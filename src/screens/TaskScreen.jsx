@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import TaskList from '../components/TaskList';
 import AddTaskForm from '../components/AddTaskForm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RegistrationScreen from './RegistrationScreen';
-import TabBar from '../components/TabBar';
 
 function TaskScreen() {
   const [tasks, setTasks] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [activeTab, setActiveTab] = useState('tasks');
 
   useEffect(() => {
     loadTasks();
@@ -85,25 +82,19 @@ function TaskScreen() {
 
   return (
     <View style={styles.container}>
-      <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === 'tasks' ? (
-        <>
-          <AddTaskForm
-            addTask={addTask}
-            isEditing={isEditing}
-            selectedTask={selectedTask}
-            saveEditedTask={saveEditedTask}
-          />
-          <TaskList
-            tasks={tasks}
-            deleteTask={deleteTask}
-            toggleTaskStatus={toggleTaskStatus}
-            startEditingTask={startEditingTask}
-          />
-        </>
-      ) : (
-        <RegistrationScreen />
-      )}
+      <AddTaskForm
+        addTask={addTask}
+        isEditing={isEditing}
+        selectedTask={selectedTask}
+        saveEditedTask={saveEditedTask}
+      />
+      <TaskList
+        tasks={tasks}
+        deleteTask={deleteTask}
+        toggleTaskStatus={toggleTaskStatus}
+        startEditingTask={startEditingTask}
+        contentContainerStyle={styles.listContainer}
+      />
     </View>
   );
 }
@@ -112,25 +103,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingBottom: 120,
     backgroundColor: 'lightcyan',
   },
-  tabContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  tab: {
-    flex: 1,
-    paddingVertical: 10,
-    alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'gray',
-  },
-  activeTab: {
-    borderBottomColor: 'blue',
-  },
-  tabText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  listContainer: {
+    flexGrow: 1,
   },
 });
 

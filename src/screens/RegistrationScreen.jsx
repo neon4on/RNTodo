@@ -5,11 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInputMask} from 'react-native-masked-text';
 
-function RegistrationScreen({activeTab, setActiveTab}) {
+function RegistrationScreen() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,8 +33,10 @@ function RegistrationScreen({activeTab, setActiveTab}) {
       setEmail('');
       setPhone('');
       setAddress('');
+      Alert.alert('Регистрация успешна', 'Ваш аккаунт создан!', [{text: 'ОК'}]);
     } catch (error) {
       console.log('Error saving registration data:', error);
+      Alert.alert('Ошибка', 'Произошла ошибка при регистрации', [{text: 'ОК'}]);
     }
   };
 

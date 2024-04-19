@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'navy',
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
