@@ -23,7 +23,7 @@ function TaskItem({
       <View style={[styles.taskItem, {backgroundColor: itemBackgroundColor}]}>
         <Text style={styles.taskText}>{item.text}</Text>
         <Text style={styles.taskDate}>
-          {item.date ? item.date.toLocaleDateString() : ''}
+          {item.date ? new Date(item.date).toLocaleDateString() : ''}
         </Text>
         <Text style={styles.taskStatus}>{item.status}</Text>
         <TouchableOpacity
